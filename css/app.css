@@ -67,7 +67,7 @@ h1 {
 	border-radius: 10px;
 	box-sizing: border-box;
 	box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-	margin-bottom: 3em;
+	margin: 0 0 3em;
 }
 
 .deck .card {
