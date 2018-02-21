@@ -5,7 +5,7 @@
 	<title>Jogo da Memória</title>
 	<meta name="description" content="">
 	<link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+	<link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
 	<link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -16,31 +16,63 @@
 		<section class="score-panel">
 			<ul class="stars">
 				<li><i class="fa fa-star"></i></li>
-        <li><i class="fa fa-star"></i></li>
-        <li><i class="fa fa-star"></i></li>
+				<li><i class="fa fa-star"></i></li>
+				<li><i class="fa fa-star"></i></li>
 			</ul>
 			<span class="moves"></span> Moves
 			<div class="restart">
 				<i class="fa fa-repeat"></i>
 			</div>
 		</section>
-		<ul class="deck">
-			<li class="card"></li>
-			<li class="card"></li>
-			<li class="card"></li>
-			<li class="card"></li>
-			<li class="card"></li>
-			<li class="card"></li>
-			<li class="card"></li>
-			<li class="card"></li>
-			<li class="card"></li>
-			<li class="card"></li>
-			<li class="card"></li>
-			<li class="card"></li>
-			<li class="card"></li>
-			<li class="card"></li>
-			<li class="card"></li>
-			<li class="card"></li>
+		<ul class="deck" id="card-deck">
+			<li class="card" type="diamond">
+				<i class="fa fa-diamond"></i>
+			</li>
+			<li class="card" type="plane">
+				<i class="fa fa-paper-plane-o"></i>
+			</li>
+			<li class="card match" type="anchor">
+				<i class="fa fa-anchor"></i>
+			</li>
+			<li class="card" type="bolt" >
+				<i class="fa fa-bolt"></i>
+			</li>
+			<li class="card" type="cube">
+				<i class="fa fa-cube"></i>
+			</li>
+			<li class="card match" type="anchor">
+				<i class="fa fa-anchor"></i>
+			</li>
+			<li class="card" type="leaf">
+				<i class="fa fa-leaf"></i>
+			</li>
+			<li class="card" type="bicycle">
+				<i class="fa fa-bicycle"></i>
+			</li>
+			<li class="card" type="diamond">
+				<i class="fa fa-diamond"></i>
+			</li>
+			<li class="card" type="bomb">
+				<i class="fa fa-bomb"></i>
+			</li>
+			<li class="card" type="leaf">
+				<i class="fa fa-leaf"></i>
+			</li>
+			<li class="card" type="bomb">
+				<i class="fa fa-bomb"></i>
+			</li>
+			<li class="card open show" type="bolt">
+				<i class="fa fa-bolt"></i>
+			</li>
+			<li class="card" type="bicycle">
+				<i class="fa fa-bicycle"></i>
+			</li>
+			<li class="card" type="plane">
+				<i class="fa fa-paper-plane-o"></i>
+			</li>
+			<li class="card" type="cube">
+				<i class="fa fa-cube"></i>
+			</li>
 		</ul>
 	</div>
 	<script src="js/app.js"></script>
