@@ -77,6 +77,7 @@ h1 {
 	width: 125px;
 	height: 125px;
 	background: #2e3d49;
+	font-size: 0;
 	color: white;
 	cursor: pointer;
 	border-radius: 10px;
@@ -90,11 +91,11 @@ h1 {
 }
 
 .deck .card.show {
-    font-size: 33px;
+    font-size: 32px;
 }
 
 .deck .card.match {
     cursor: default;
     background: #02ccba;
-    font-size: 33px;
+    font-size: 32px;
 }
