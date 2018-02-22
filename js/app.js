@@ -4,15 +4,30 @@
 let card = document.getElementsByClassName("card");
 let cards = [...card];
 
-// declaring move variable
-let moves = 0;
-let counter = document.querySelector(".moves");
-
-// deck of all cards in game
-const deck = document.querySelector(".deck");
-
 // array for opened cards
 var openedCards = [];
+
+// declaring variable of matchedCards
+let matchedCard = document.getElementsByClassName("match");
+
+// declaring move variable
+let moves = 0;
+let counter = {
+	refresh: function() {
+		document.querySelector(".moves").innerHTML = moves;
+	},
+	add: function() {
+		moves++;
+		document.querySelector(".moves").innerHTML = moves;
+	},
+	restart: function() {
+		moves = 0;
+		document.querySelector(".moves").innerHTML = moves;
+	}
+};
+
+// stars
+const stars = document.querySelectorAll(".fa-star");
 
 // shuffle cards and display each card in the deck when page is loaded
 window.onload = startGame();
@@ -22,6 +37,9 @@ for(var i = 0; i < cards.length; i++) {
 	cards[i].addEventListener("click", displayCard);
 	cards[i].addEventListener("click", cardOpen);
 }
+
+// restart button
+document.querySelector(".restart").addEventListener("click", startGame);
 
 /*
  * Display the cards on the page
@@ -44,20 +62,19 @@ function shuffle(array) {
     return array;
 }
 
-// start game function
+// start a new game
 function startGame() {
 	var shuffledCards = shuffle(cards);
 	for(var i=0; i<shuffledCards.length; i++) {
+		document.querySelector(".deck").innerHTML = "";
 		[].forEach.call(shuffledCards, function(item) {
-			deck.appendChild(item);
+			document.querySelector(".deck").appendChild(item);
 		});
 	}
-}
 
-// counts a move on selecting two cards
-function moveCounter() {
-	moves++;
-	counter.innerHTML = moves;
+	// reset moves
+	counter.restart();
+
 }
 
 // toggles open, show and disabled classes
@@ -70,9 +87,8 @@ function displayCard() {
 // add opened cards to OpenedCards list and check if cards are match or not
 function cardOpen() {
 	openedCards.push(this);
-	var len = openedCards.length;
-	if(len === 2) {
-		moveCounter();
+	if(openedCards.length === 2) {
+		counter.add();
 		if(openedCards[0].type === openedCards[1].type) {
 			matched();
 		} else {
@@ -83,10 +99,10 @@ function cardOpen() {
 
 // for when cards match
 function matched() {
-	openedCards[0].classList.add("match");
-	openedCards[1].classList.add("match");
-	openedCards[0].classList.remove("show", "open");
-	openedCards[1].classList.remove("show", "open");
+	openedCards[0].classList.add("match", "disabled");
+	openedCards[1].classList.add("match", "disabled");
+	openedCards[0].classList.remove("show", "open", "no-event");
+	openedCards[1].classList.remove("show", "open", "no-event");
 	openedCards = [];
 }
 
@@ -96,8 +112,10 @@ function unmatched() {
 	openedCards[1].classList.add("unmatched");
 	disable();
 	setTimeout(function() {
-		openedCards[0].classList.remove("show", "open", "unmatched");
-		openedCards[1].classList.remove("show", "open", "unmatched");
+		openedCards[0].classList.remove("show", "open", "no-event", "unmatched");
+		openedCards[1].classList.remove("show", "open", "no-event", "unmatched");
+		enable();
+		openedCards = [];
 	}, 1100);
 }
 
@@ -116,6 +134,14 @@ function enable() {
 			matchedCard[i].classList.add("disabled");
 		}
 	});
+}
+
+function starRating() {
+	if(moves > 12) {
+		stars[stars.length-1].classList.remove("shine");
+	} else if(moves > 18) {
+		stars[stars.length-2].classList.remove("shine");
+	}
 }
 
 /*
