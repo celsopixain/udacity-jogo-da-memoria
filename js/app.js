@@ -1,6 +1,4 @@
-/*
- * Create a list that holds all of your cards
- */
+// list that holds all cards
 let card = document.getElementsByClassName("card");
 let cards = [...card];
 
@@ -10,24 +8,45 @@ var openedCards = [];
 // declaring variable of matchedCards
 let matchedCard = document.getElementsByClassName("match");
 
-// declaring move variable
+// declaring moves variable
 let moves = 0;
-let counter = {
-	refresh: function() {
-		document.querySelector(".moves").innerHTML = moves;
-	},
-	add: function() {
-		moves++;
-		document.querySelector(".moves").innerHTML = moves;
-	},
-	restart: function() {
-		moves = 0;
-		document.querySelector(".moves").innerHTML = moves;
-	}
+
+// declaring counter variable
+let CounterSet = function(moves) {
+	this.target = document.querySelector(".moves");
+	this.moves = moves;
+	this.target.innerHTML = this.moves;
+}
+
+CounterSet.prototype.add = function() {
+	this.moves++;
+	this.target.innerHTML = this.moves;
 };
 
-// stars
+CounterSet.prototype.restart = function() {
+	this.moves = 0;
+	this.target.innerHTML = this.moves;
+};
+
+let counter = new CounterSet(moves);
+
+// stars and starRating
 const stars = document.querySelectorAll(".fa-star");
+
+let starRating = {
+	restart: function() {
+		for(var i=0; i<stars.length; i++) {
+			stars[i].classList.add("shine");
+		}
+	},
+	rate: function() {
+		if(moves > 12 && moves < 18) {
+			stars[2].classList.remove("shine");
+		} else if(moves > 18) {
+			stars[1].classList.remove("shine");
+		}
+	}
+};
 
 // shuffle cards and display each card in the deck when page is loaded
 window.onload = startGame();
@@ -50,31 +69,29 @@ document.querySelector(".restart").addEventListener("click", startGame);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+	var currentIndex = array.length, temporaryValue, randomIndex;
+	while (currentIndex !== 0) {
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+	}
 
-    return array;
+	return array;
 }
 
 // start a new game
 function startGame() {
-	var shuffledCards = shuffle(cards);
-	for(var i=0; i<shuffledCards.length; i++) {
+	for(var i=0; i<shuffle(cards).length; i++) {
 		document.querySelector(".deck").innerHTML = "";
-		[].forEach.call(shuffledCards, function(item) {
+		[].forEach.call(shuffle(cards), function(item) {
 			document.querySelector(".deck").appendChild(item);
 		});
 	}
 
-	// reset moves
 	counter.restart();
-
+	starRating.restart();
 }
 
 // toggles open, show and disabled classes
@@ -89,6 +106,7 @@ function cardOpen() {
 	openedCards.push(this);
 	if(openedCards.length === 2) {
 		counter.add();
+		starRating.rate();
 		if(openedCards[0].type === openedCards[1].type) {
 			matched();
 		} else {
@@ -134,14 +152,6 @@ function enable() {
 			matchedCard[i].classList.add("disabled");
 		}
 	});
-}
-
-function starRating() {
-	if(moves > 12) {
-		stars[stars.length-1].classList.remove("shine");
-	} else if(moves > 18) {
-		stars[stars.length-2].classList.remove("shine");
-	}
 }
 
 /*
