@@ -14,6 +14,10 @@ let moves = 0;
 // congrats popup variable
 let popup = document.getElementById("congrats-popup");
 
+// close popup buttons
+let closeButton = document.getElementsByClassName("close-popup");
+let closeButtons = [...closeButton];
+
 // refresh value in HTML
 let refreshHTML = function(target, value) {
 	return target.innerHTML = value;
@@ -70,7 +74,6 @@ for(var i = 0; i < cards.length; i++) {
 
 // restart button
 document.querySelector(".restart").addEventListener("click", startGame);
-document.querySelector(".close-popup").addEventListener("click", closePopup);
 
 // shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -173,8 +176,10 @@ function congratulations() {
 }
 
 function closePopup() {
-	document.getElementById("close-popup").addEventListener("click", function() {
-		popup.classList.remove("show");
-		startGame();
-	});
+	for(var i=0; i < closeButtons.length; i++) {
+		closeButtons[i].addEventListener("click", function() {
+			popup.classList.remove("show");
+			startGame();
+		});
+	}
 }
