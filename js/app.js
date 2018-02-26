@@ -172,7 +172,7 @@ function congratulations() {
 }
 
 function closePopup() {
-	addEventListener("click", function() {
+	document.getElementById("close-popup").addEventListener("click", function() {
 		popup.classList.remove("show");
 		startGame();
 	});
