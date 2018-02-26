@@ -70,6 +70,7 @@ for(var i = 0; i < cards.length; i++) {
 
 // restart button
 document.querySelector(".restart").addEventListener("click", startGame);
+document.querySelector(".close-popup").addEventListener("click", closePopup);
 
 // shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
