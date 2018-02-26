@@ -3,7 +3,7 @@ let card = document.getElementsByClassName("card");
 let cards = [...card];
 
 // array for opened cards
-var openedCards = [];
+let openedCards = [];
 
 // declaring variable of matchedCards
 let matchedCard = document.getElementsByClassName("match");
@@ -12,7 +12,7 @@ let matchedCard = document.getElementsByClassName("match");
 let moves = 0;
 
 // congrats popup variable
-let popup = document.getElementById("congrats-popup");
+const popup = document.getElementById("congrats-popup");
 
 // refresh value in HTML
 let refreshHTML = function(target, value) {
@@ -58,6 +58,24 @@ StarRating.prototype.restart = function() {
 
 let stars = new StarRating();
 
+// declaring timer
+const timer = document.querySelector(".timer");
+
+
+// declaring second, minute, hour
+let second = {
+	value: 0,
+	label: " segs"
+};
+
+let minute = {
+	value: 0,
+	label: " mins "
+};
+
+// declaring interval
+let interval;
+
 // shuffle cards and display each card in the deck when page is loaded
 window.onload = startGame();
 
@@ -95,9 +113,9 @@ function startGame() {
 		});
 		cards[i].classList.remove("show", "open", "match", "disabled");
 	}
-
 	counter.restart();
 	stars.restart();
+	buildTimer();
 }
 
 // toggles open, show and disabled classes
@@ -113,6 +131,7 @@ function cardOpen() {
 	if(openedCards.length === 2) {
 		counter.add();
 		stars.rate();
+		startTimer();
 		if(openedCards[0].type === openedCards[1].type) {
 			matched();
 		} else {
@@ -161,11 +180,39 @@ function enable() {
 	}
 }
 
+// refresh timer in HTML
+function refreshTimer() {
+	timer.innerHTML = minute.value + minute.label + second.value + second.label;
+}
+
+// build timer
+function buildTimer() {
+	second.value = 58;
+	minute.value = 59;
+	refreshTimer();
+}
+
+// start timer function
+function startTimer() {
+	if(moves == 1) {
+		interval = setInterval(function() {
+			second.value++;
+			if(second.value == 60) {
+				minute.value++;
+				second.value = 0;
+			}
+			refreshTimer();
+		}, 1000);
+	}
+}
+
 // congratulations popup when all cards match
 function congratulations() {
-	if(matchedCard.length == 16) {
+	if(matchedCard.length == 2) {
+		clearInterval(interval);
 		popup.classList.add("show");
 		document.getElementById("total-moves").innerHTML = moves;
+		document.getElementById("total-time").innerHTML = timer.innerHTML;
 		document.getElementById("star-rating").innerHTML = document.querySelector(".stars").innerHTML;
 		closePopup();
 	};
