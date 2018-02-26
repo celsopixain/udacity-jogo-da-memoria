@@ -26,6 +26,7 @@ body {
 	flex-flow: column wrap;
 	justify-content: center;
 	align-items: center;
+	padding: 20px;
 }
 
 h1 {
@@ -74,13 +75,14 @@ h1 {
 
 .deck {
 	width: 700px;
+	max-width: 100%;
 	min-height: 700px;
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;
 	align-items: center;
 	background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-	padding: 40px;
+	padding: 20px;
 	border-radius: 10px;
 	box-sizing: border-box;
 	box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -91,14 +93,15 @@ h1 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 125px;
-	height: 125px;
+	width: 100px;
+	height: 100px;
 	background: #2e3d49;
 	font-size: 0;
 	color: white;
 	cursor: pointer;
 	border-radius: 10px;
 	box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+	margin: 20px;
 }
 
 .deck .card.open {
@@ -185,7 +188,7 @@ h1 {
 	cursor: pointer;
 }
 
-/* animations */
+/* Animations */
 
 @keyframes flipInY {
 	from {
@@ -255,4 +258,20 @@ h1 {
 	to {
 		transform: scale3d(1, 1, 1);
 	}
+}
+
+/* Responsive */
+
+@media only screen and (min-width: 768px) {
+
+	.deck {
+		padding: 40px;
+	}
+
+	.deck .card {
+		width: 125px;
+		height: 125px;
+		margin: 0;
+	}
+
 }
