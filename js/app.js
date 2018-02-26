@@ -11,6 +11,9 @@ let matchedCard = document.getElementsByClassName("match");
 // declaring moves variable
 let moves = 0;
 
+// congrats popup variable
+let popup = document.getElementById("congrats-popup");
+
 // refresh value in HTML
 let refreshHTML = function(target, value) {
 	return target.innerHTML = value;
@@ -62,6 +65,7 @@ window.onload = startGame();
 for(var i = 0; i < cards.length; i++) {
 	cards[i].addEventListener("click", displayCard);
 	cards[i].addEventListener("click", cardOpen);
+	cards[i].addEventListener("click", congratulations);
 }
 
 // restart button
@@ -155,4 +159,21 @@ function enable() {
 			cards[i].classList.remove("disabled");
 		};
 	}
+}
+
+// congratulations popup when all cards match
+function congratulations() {
+	if(matchedCard.length == 2) {
+		popup.classList.add("show");
+		document.getElementById("total-moves").innerHTML = moves;
+		document.getElementById("star-rating").innerHTML = document.querySelector(".stars").innerHTML;
+		closePopup();
+	};
+}
+
+function closePopup() {
+	addEventListener("click", function() {
+		popup.classList.remove("show");
+		startGame();
+	});
 }
