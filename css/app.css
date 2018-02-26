@@ -45,23 +45,23 @@ h1 {
   margin-bottom: 10px;
 }
 
-.score-panel .stars {
+.stars {
   margin: 0;
   padding: 0;
   display: inline-block;
-  margin: 0 5px 0 0;
+  margin: 0 5px;
 }
 
-.score-panel .stars li {
+.stars li {
   list-style: none;
   display: inline-block;
 }
 
-.score-panel .fa-star {
+.fa-star {
 	color: #ccc;
 }
 
-.score-panel .fa-star.shine {
+.fa-star.shine {
 	color: #ffde00;
 }
 
