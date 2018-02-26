@@ -21,7 +21,7 @@ let refreshHTML = function(target, value) {
 
 // counter and CounterSet
 let CounterSet = function(moves) {
-	this.target = document.querySelector(".moves");
+	this.target = document.querySelector(".counter");
 	refreshHTML(this.target, moves);
 };
 
@@ -62,7 +62,7 @@ let stars = new StarRating();
 const timer = document.querySelector(".timer");
 
 
-// declaring second, minute, hour
+// declaring second and minute
 let second = {
 	value: 0,
 	label: " segs"
@@ -115,7 +115,7 @@ function startGame() {
 	}
 	counter.restart();
 	stars.restart();
-	buildTimer();
+	resetTimer();
 }
 
 // toggles open, show and disabled classes
@@ -185,14 +185,14 @@ function refreshTimer() {
 	timer.innerHTML = minute.value + minute.label + second.value + second.label;
 }
 
-// build timer
-function buildTimer() {
-	second.value = 58;
-	minute.value = 59;
+// reset timer
+function resetTimer() {
+	second.value = 0;
+	minute.value = 0;
 	refreshTimer();
 }
 
-// start timer function
+// start timer
 function startTimer() {
 	if(moves == 1) {
 		interval = setInterval(function() {
@@ -208,7 +208,7 @@ function startTimer() {
 
 // congratulations popup when all cards match
 function congratulations() {
-	if(matchedCard.length == 2) {
+	if(matchedCard.length == 16) {
 		clearInterval(interval);
 		popup.classList.add("show");
 		document.getElementById("total-moves").innerHTML = moves;

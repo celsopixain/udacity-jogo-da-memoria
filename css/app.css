@@ -41,21 +41,19 @@ h1 {
 /* Score Panel */
 
 .score-panel {
-  text-align: left;
-  width: 345px;
-  margin-bottom: 10px;
+	display: flex;
+	flex-flow: row wrap;
+	text-align: left;
+	margin-bottom: 10px;
 }
 
 .stars {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  margin: 0 5px;
+	padding: 0;
 }
 
 .stars li {
-  list-style: none;
-  display: inline-block;
+	list-style: none;
+	display: inline-block;
 }
 
 .fa-star {
@@ -67,8 +65,14 @@ h1 {
 }
 
 .score-panel .restart {
-  float: right;
-  cursor: pointer;
+	float: right;
+	cursor: pointer;
+}
+
+.stars,
+.moves,
+.timer {
+	margin: 0 15px;
 }
 
 /* Deck + Cards */
@@ -188,6 +192,22 @@ h1 {
 	cursor: pointer;
 }
 
+/* Responsive */
+
+@media only screen and (min-width: 768px) {
+
+	.deck {
+		padding: 40px;
+	}
+
+	.deck .card {
+		width: 125px;
+		height: 125px;
+		margin: 0;
+	}
+	
+}
+
 /* Animations */
 
 @keyframes flipInY {
@@ -258,20 +278,4 @@ h1 {
 	to {
 		transform: scale3d(1, 1, 1);
 	}
-}
-
-/* Responsive */
-
-@media only screen and (min-width: 768px) {
-
-	.deck {
-		padding: 40px;
-	}
-
-	.deck .card {
-		width: 125px;
-		height: 125px;
-		margin: 0;
-	}
-
 }
