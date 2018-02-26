@@ -32,6 +32,11 @@ h1 {
 	font-weight: 300;
 }
 
+.show {
+	visibility: visible;
+	opacity: 1;
+}
+
 /* Score Panel */
 
 .score-panel {
@@ -145,6 +150,8 @@ h1 {
 	align-items: center;
 	justify-content: center;
 	background-color: rgba(0,0,0,0.7);
+	visibility: hidden;
+	opacity: 0;
 }
 
 #congrats-popup .popup {
