@@ -14,10 +14,6 @@ let moves = 0;
 // congrats popup variable
 let popup = document.getElementById("congrats-popup");
 
-// close popup buttons
-let closeButton = document.getElementsByClassName("close-popup");
-let closeButtons = [...closeButton];
-
 // refresh value in HTML
 let refreshHTML = function(target, value) {
 	return target.innerHTML = value;
@@ -176,10 +172,8 @@ function congratulations() {
 }
 
 function closePopup() {
-	for(var i=0; i < closeButtons.length; i++) {
-		closeButtons[i].addEventListener("click", function() {
-			popup.classList.remove("show");
-			startGame();
-		});
-	}
+	document.getElementById("play-again").addEventListener("click", function() {
+		popup.classList.remove("show");
+		startGame();
+	});
 }
