@@ -163,7 +163,7 @@ function enable() {
 
 // congratulations popup when all cards match
 function congratulations() {
-	if(matchedCard.length == 2) {
+	if(matchedCard.length == 16) {
 		popup.classList.add("show");
 		document.getElementById("total-moves").innerHTML = moves;
 		document.getElementById("star-rating").innerHTML = document.querySelector(".stars").innerHTML;
@@ -171,6 +171,7 @@ function congratulations() {
 	};
 }
 
+// close popup function on play again button
 function closePopup() {
 	document.getElementById("play-again").addEventListener("click", function() {
 		popup.classList.remove("show");
